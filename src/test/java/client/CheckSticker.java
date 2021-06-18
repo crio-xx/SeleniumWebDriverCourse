@@ -10,7 +10,8 @@ public class CheckSticker extends BaseTest {
     public void TestCheckStrickers() {
         driver.navigate().to(baseUrl);
         var mainContent = driver.findElement(By.cssSelector("#main > div.middle > div.content"));
-        var listGoods = mainContent.findElements(By.cssSelector("div.box div.content ul li"));
+
+        var listGoods = mainContent.findElements(By.cssSelector("[class ^= 'product']"));
         for(var el : listGoods){
             int count = el.findElements(By.cssSelector("[class ^= sticker]")).size();
             assert count == 1;
