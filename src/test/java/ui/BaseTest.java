@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
     public WebDriver driver;
-    public String baseUrl = "http://localhost/litecart/";
+    public String baseUrl = "http://localhost/litecart";
 
     @Before
     public void setUpChrome(){
