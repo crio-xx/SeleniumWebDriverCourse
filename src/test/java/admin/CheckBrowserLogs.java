@@ -18,14 +18,21 @@ public class CheckBrowserLogs extends BaseTest {
         HashSet<String> viewedCategory = new HashSet<>();
         HashSet<String> viewedProduct = new HashSet<>();
         Queue<String> categoryIds = new LinkedList<>();
+
         String catalogUrl = baseUrl + "/admin/?app=catalog&doc=catalog";
         Login.auth(driver, catalogUrl, "admin", "admin");
+
+        // запустим алгоритм поиска с корневого каталога
         categoryIds.add("category_id=0");
+
         do {
 
+            // извлекаем из очереди элемент, продукты которого будут рассмотрены на этом шаге
             String currentCategory = categoryIds.remove();
+            // переходим в рассматриваемую категорию
             driver.navigate().to(catalogUrl + "&" + currentCategory);
 
+            // поиск категорий, которые еще не были просмотрены
             var links = driver.findElements(By.cssSelector("#content table tr td:nth-child(2) [href]"));
             for (var link : links) {
                 String categoryId = getCategoryId(link.getAttribute("href"));
@@ -34,7 +41,7 @@ public class CheckBrowserLogs extends BaseTest {
                 }
             }
 
-
+            // поиск продуктов, страницы которых еще не были открыты и проверены на ошибки в консоли
             List<String> productsInCurrentCategory = new LinkedList<>();
             var products = driver.findElements(By.cssSelector(
                     String.format("#content table td:nth-child(2) [href *= '%s&product_id='] ", currentCategory)));
@@ -43,14 +50,18 @@ public class CheckBrowserLogs extends BaseTest {
                 productsInCurrentCategory.add(product.getAttribute("href"));
             }
 
+            // проход по карточке каждого товара и проверка консоли. После прохода помечаем продукт просмотренным
             for (var productLink : productsInCurrentCategory) {
                 if(!viewedProduct.contains(productLink)) {
                     checkBrowserLog(productLink);
                     viewedProduct.add(productLink);
                 }
             }
+
+            // помечаем категорию просмотренной
             viewedCategory.add(currentCategory);
 
+        // повторяем, пока не закончатся непросмотренные категории
         } while (!categoryIds.isEmpty());
 
     }
