@@ -1,6 +1,6 @@
-package admin;
+package ui.admin;
 
-import org.example.configuration.ConfigurationUtils;
+import configuration.ConfigurationUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,13 +8,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ui.BaseTest;
 
-public class LoginTest {
-    WebDriver driver;
+public class CheckLogin extends BaseTest {
+
+    /*
+     * Задание 3. Сделайте сценарий логина
+     */
 
     @Test
     public void TestAdminLogin() {
-        driver.get("http://localhost/litecart/admin/");
+        driver.get(baseUrl + "/admin");
         WebElement username = driver.findElement(By.name("username"));
         username.sendKeys("admin");
 

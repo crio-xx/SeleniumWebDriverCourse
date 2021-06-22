@@ -1,4 +1,4 @@
-package client;
+package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -6,6 +6,10 @@ import org.openqa.selenium.support.ui.Select;
 import ui.BaseTest;
 
 public class CheckBrowserLogs extends BaseTest {
+
+    /*
+     * Задание 17. Проверьте отсутствие сообщений в логе браузера (additional)
+     */
 
     @Test
     public void TestCheckStickers() {

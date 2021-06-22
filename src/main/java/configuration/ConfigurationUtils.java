@@ -1,4 +1,4 @@
-package org.example.configuration;
+package configuration;
 
 import java.io.File;
 

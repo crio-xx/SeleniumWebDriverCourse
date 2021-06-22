@@ -1,4 +1,4 @@
-package ui;
+package utils;
 
 import org.openqa.selenium.support.ui.ExpectedCondition;
 

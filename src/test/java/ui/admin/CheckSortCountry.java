@@ -1,5 +1,6 @@
-package admin;
+package ui.admin;
 
+import admin.Login;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckSortCountry extends BaseTest {
+
+    /*
+     * Задание 9. Проверить сортировку стран и геозон в админке
+     */
 
     @Test
     public void TestCheckSortCountries() {

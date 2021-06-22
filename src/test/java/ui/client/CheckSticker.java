@@ -1,10 +1,14 @@
-package client;
+package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
 import ui.BaseTest;
 
 public class CheckSticker extends BaseTest {
+
+    /*
+     * Задание 8. Сделайте сценарий, проверяющий наличие стикеров у товаров
+     */
 
     @Test
     public void TestCheckStrickers() {

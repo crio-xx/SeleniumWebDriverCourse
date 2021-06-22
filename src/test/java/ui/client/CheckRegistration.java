@@ -1,4 +1,4 @@
-package client;
+package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -7,6 +7,10 @@ import ui.BaseTest;
 import utils.StringUtils;
 
 public class CheckRegistration extends BaseTest {
+
+    /*
+     * Задание 11. Сделайте сценарий регистрации пользователя
+     */
 
     @Test
     public void testRegistration() {

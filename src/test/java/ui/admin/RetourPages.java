@@ -1,11 +1,16 @@
-package admin;
+package ui.admin;
 
+import admin.Login;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 import ui.BaseTest;
 
 public class RetourPages extends BaseTest {
+
+    /*
+     * Задание 7. Сделайте сценарий, проходящий по всем разделам админки
+     */
 
     @Test
     public void TestFollowLink() {

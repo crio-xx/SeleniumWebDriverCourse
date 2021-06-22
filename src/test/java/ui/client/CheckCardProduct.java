@@ -1,4 +1,4 @@
-package client;
+package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -10,6 +10,10 @@ import org.openqa.selenium.support.Color;
 import static org.junit.Assert.*;
 
 public class CheckCardProduct extends BaseTest {
+
+    /*
+     * Задание 10. Проверить, что открывается правильная страница товара
+     */
 
     @Test
     public void testCardProduct() {

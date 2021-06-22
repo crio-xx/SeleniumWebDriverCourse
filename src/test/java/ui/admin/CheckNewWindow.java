@@ -1,11 +1,16 @@
-package admin;
+package ui.admin;
 
+import admin.Login;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import ui.BaseTest;
-import ui.CustomExpectedConditions;
+import utils.CustomExpectedConditions;
 
 public class CheckNewWindow extends BaseTest {
+
+    /*
+     * Задание 14. Проверьте, что ссылки открываются в новом окне
+     */
 
     @Test
     public void testOpenLinkInNewWindow() {

@@ -1,4 +1,4 @@
-package client;
+package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -8,6 +8,10 @@ import org.openqa.selenium.support.ui.Select;
 import ui.BaseTest;
 
 public class CheckShoppingBasket extends BaseTest {
+
+    /*
+     * Задание 13. Сделайте сценарий работы с корзиной
+     */
 
     @Test
     public void testShoppingBasket() {

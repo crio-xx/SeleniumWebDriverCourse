@@ -1,5 +1,6 @@
-package admin;
+package ui.admin;
 
+import admin.Login;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import ui.BaseTest;
@@ -12,6 +13,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CheckBrowserLogs extends BaseTest {
+
+    /*
+     * Задание 17. Проверьте отсутствие сообщений в логе браузера
+     */
 
     @Test
     public void TestCheckBrowserLogs() {

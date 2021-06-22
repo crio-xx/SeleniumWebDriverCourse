@@ -1,6 +1,6 @@
 package ui;
 
-import org.example.configuration.ConfigurationUtils;
+import configuration.ConfigurationUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
