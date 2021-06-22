@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
@@ -18,7 +19,6 @@ public class BaseTest {
     public String baseUrl = "http://localhost/litecart";
     public WebDriverWait wait;
 
-    @Before
     public void setUpChrome(){
         System.setProperty("webdriver.chrome.driver", ConfigurationUtils.getChromeDriverPath());
         ChromeOptions options = new ChromeOptions();
@@ -27,6 +27,23 @@ public class BaseTest {
         options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, 5);
+    }
+
+    public void setUpFirefox(){
+        System.setProperty("webdriver.gecko.driver", ConfigurationUtils.getGeckoDriverPath());
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 5);
+    }
+
+
+    @Before
+    public void setDriver() {
+        String browser = "firefox";
+        if(browser.equals("chrome")) {
+            setUpChrome();
+        } else if (browser.equals("firefox")) {
+            setUpFirefox();
+        }
     }
 
     @After
