@@ -9,7 +9,7 @@ public class RetourPages extends BaseTest {
 
     @Test
     public void TestFollowLink() {
-        Login.auth(driver, baseUrl + "admin/", "admin", "admin");
+        Login.auth(driver, baseUrl + "/admin", "admin", "admin");
         var listRightMenu = driver.findElement(By.cssSelector("div#box-apps-menu-wrapper"));
         int size = listRightMenu.findElements(By.cssSelector("li#app-")).size();
 
