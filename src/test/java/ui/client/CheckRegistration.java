@@ -2,9 +2,18 @@ package ui.client;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.BaseTest;
 import utils.StringUtils;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class CheckRegistration extends BaseTest {
 
@@ -25,7 +34,8 @@ public class CheckRegistration extends BaseTest {
         String country = "United States";
         String zone = "California";
 
-        driver.navigate().to(baseUrl + "/create_account");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.navigate().to("https://litecart.stqa.ru/ru" + "/create_account");
 
         // user data entry for registration
         driver.findElement(By.name("firstname")).sendKeys(firstName);
@@ -34,12 +44,22 @@ public class CheckRegistration extends BaseTest {
         driver.findElement(By.name("postcode")).sendKeys(postcode);
         driver.findElement(By.name("city")).sendKeys(city);
         driver.findElement(By.name("phone")).sendKeys(phone);
-        new Select(driver.findElement(By.name("country_code"))).selectByVisibleText(country);
-        new Select(driver.findElement(By.name("zone_code"))).selectByVisibleText(zone);
         driver.findElement(By.name("email")).sendKeys(email);
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.name("confirmed_password")).sendKeys(password);
 
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        var countrySelect = driver.findElement(By.name("country_code"));
+        String countryIndex = driver.findElement(By.cssSelector("option[value = US]")).getAttribute("index");
+        String script = String.format("arguments[0].selectedIndex = %s; arguments[0].dispatchEvent(new Event('change'))", countryIndex);
+        js.executeScript(script, countrySelect);
+
+        var zoneSelect = driver.findElement(By.cssSelector("select[name = zone_code]"));
+        js.executeScript("arguments[0].style.opacity=1", zoneSelect);
+
+        new Select(driver.findElement(By.cssSelector("select[name = zone_code]"))).selectByVisibleText(zone);
 
         // click Register
         driver.findElement(By.name("create_account")).click();

@@ -12,7 +12,7 @@ public class CheckBrowserLogs extends BaseTest {
      */
 
     @Test
-    public void TestCheckStickers() {
+    public void TestBrowserLogs() {
         driver.navigate().to(baseUrl);
         var logsBefore = driver.manage().logs().get("browser").getAll();
 
