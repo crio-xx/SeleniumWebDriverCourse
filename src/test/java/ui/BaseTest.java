@@ -5,7 +5,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.logging.Level;
 
 public class BaseTest {
     public WebDriver driver;
@@ -15,7 +21,11 @@ public class BaseTest {
     @Before
     public void setUpChrome(){
         System.setProperty("webdriver.chrome.driver", ConfigurationUtils.getChromeDriverPath());
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.INFO);
+        options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, 5);
     }
 
