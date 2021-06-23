@@ -48,15 +48,11 @@ public class CheckRegistrationWithoutSelect extends BaseTest {
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.name("confirmed_password")).sendKeys(password);
 
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
         var countrySelect = driver.findElement(By.cssSelector("span[class ^= select2][class $= arrow]"));
         countrySelect.click();
 
-        var option_US = driver.findElement(By.xpath("//*//li[text()='United States']"));
+        var option_US = driver.findElement(By.xpath(String.format("//*//li[text()='%s']", country)));
         option_US.click();
-        // //*[@id="select2-country_code-l3-result-umfd-US"]
 
         new Select(driver.findElement(By.cssSelector("select[name = zone_code]"))).selectByVisibleText(zone);
 
