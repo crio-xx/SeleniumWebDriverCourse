@@ -34,6 +34,10 @@ public class AddProduct extends BaseTest {
         var image = new File("src/main/resources/new_image.jpg");
         driver.findElement(By.cssSelector("input[name ^=new_image]")).sendKeys(image.getAbsolutePath());
 
+        driver.findElement(By.cssSelector("input[name = date_valid_from]")).sendKeys(StringUtils.getCurrentDate());
+        driver.findElement(By.cssSelector("input[name = date_valid_to]")).sendKeys(StringUtils.getDateInFutureInFewDays(365));
+
+
         // information
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector("[href $= tab-information]")).click();

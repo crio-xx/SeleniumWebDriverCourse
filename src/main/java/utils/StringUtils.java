@@ -1,5 +1,7 @@
 package utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class StringUtils {
@@ -24,5 +26,16 @@ public class StringUtils {
                 .limit(length)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    public static String getCurrentDate() {
+        return LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    public static String getDateInFutureInFewDays(int days){
+        return LocalDateTime.now()
+                .plusDays(days)
+                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 }

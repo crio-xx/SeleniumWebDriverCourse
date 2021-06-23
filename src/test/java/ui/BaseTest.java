@@ -31,19 +31,14 @@ public class BaseTest {
 
     public void setUpFirefox(){
         System.setProperty("webdriver.gecko.driver", ConfigurationUtils.getGeckoDriverPath());
+
         driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
     }
 
-
     @Before
     public void setDriver() {
-        String browser = "firefox";
-        if(browser.equals("chrome")) {
-            setUpChrome();
-        } else if (browser.equals("firefox")) {
-            setUpFirefox();
-        }
+        setUpChrome();
     }
 
     @After

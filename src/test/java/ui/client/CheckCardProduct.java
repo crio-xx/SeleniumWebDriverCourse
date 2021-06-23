@@ -30,7 +30,7 @@ public class CheckCardProduct extends BaseTest {
 
         boolean thirdConditionMainPage = isGray(productRegularPrice) && isStrikethroughByTag(productRegularPrice);
         boolean fourthConditionMainPage = isRed(productCampaignPrice) && isThickByTag(productCampaignPrice);
-        boolean fifthConditionMainPage = isFirstGreaterSecond(productCampaignPrice.getSize(), productRegularPrice.getSize());
+        boolean fifthConditionMainPage = isFirstGreaterSecond(productCampaignPrice, productRegularPrice);
 
         firstProductCampaigns.click();
 
@@ -61,7 +61,7 @@ public class CheckCardProduct extends BaseTest {
         );
 
         assertTrue("Пятое условие из задания на странице товара",
-                isFirstGreaterSecond(productCampaignPriceCard.getSize(), productRegularPriceCard.getSize())
+                isFirstGreaterSecond(productCampaignPriceCard, productRegularPriceCard)
         );
 
     }
@@ -84,7 +84,9 @@ public class CheckCardProduct extends BaseTest {
         return element.getTagName().equals("strong");
     }
 
-    private boolean isFirstGreaterSecond(Dimension first, Dimension second) {
-        return first.getHeight() > second.getHeight() && first.getWidth() > second.getWidth();
+    private boolean isFirstGreaterSecond(WebElement first, WebElement second) {
+        double first_px = Double.parseDouble(first.getCssValue("font-size").replace("px", ""));
+        double second_px = Double.parseDouble(second.getCssValue("font-size").replace("px", ""));
+        return first_px > second_px;
     }
 }
