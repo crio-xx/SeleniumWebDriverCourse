@@ -15,7 +15,7 @@ import utils.StringUtils;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class CheckRegistration extends BaseTest {
+public class CheckRegistrationWithoutSelect extends BaseTest {
 
     /*
      * Задание 11. Сделайте сценарий регистрации пользователя
@@ -31,6 +31,8 @@ public class CheckRegistration extends BaseTest {
         String email = StringUtils.getRandomString(10) + "@" + StringUtils.getRandomString(5) + ".com";
         String password = StringUtils.getRandomString(4) + StringUtils.getRandomNumber(4) + StringUtils.getRandomString(4);
         String phone = "+"+StringUtils.getRandomNumber(11);
+        String country = "United States";
+        String zone = "California";
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.navigate().to("https://litecart.stqa.ru/ru" + "/create_account");
@@ -49,15 +51,13 @@ public class CheckRegistration extends BaseTest {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        var countrySelect = driver.findElement(By.name("country_code"));
-        String countryIndex = driver.findElement(By.cssSelector("option[value = US]")).getAttribute("index");
-        String script = String.format("arguments[0].selectedIndex = %s; arguments[0].dispatchEvent(new Event('change'))", countryIndex);
-        js.executeScript(script, countrySelect);
+        var countrySelect = driver.findElement(By.cssSelector("span[class ^= select2][class $= arrow]"));
+        countrySelect.click();
 
-        var zoneSelect = driver.findElement(By.cssSelector("select[name = zone_code]"));
-        js.executeScript("arguments[0].style.opacity=1", zoneSelect);
+        var option_US = driver.findElement(By.xpath("//*//li[text()='United States']"));
+        option_US.click();
+        // //*[@id="select2-country_code-l3-result-umfd-US"]
 
-        String zone = "California";
         new Select(driver.findElement(By.cssSelector("select[name = zone_code]"))).selectByVisibleText(zone);
 
         // click Register

@@ -39,7 +39,7 @@ public class BaseTest {
 
     @Before
     public void setDriver() {
-        setUpFirefox();
+        setUpChrome();
     }
 
     @After
